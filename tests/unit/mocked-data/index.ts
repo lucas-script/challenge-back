@@ -1,4 +1,4 @@
-import { Session, SessionStatus } from "../../../src/domain/entities/session";
+import { Session, SessionCreate, SessionStatus } from "../../../src/domain/entities/session";
 import { Message } from "../../../src/domain/entities/message";
 import { Role } from "../../../src/domain/entities/role";
 import { User } from "../../../src/domain/entities/user";
@@ -44,6 +44,11 @@ export const sessionData: Session = {
     status: SessionStatus.ACTIVE,
     createdAt: new Date(),
     updatedAt: new Date(),
+    userId: userClientData.id,
+}
+
+export const sessionCreationData: SessionCreate = {
+    status: SessionStatus.ACTIVE,
     userId: userClientData.id,
 }
 

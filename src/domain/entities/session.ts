@@ -17,6 +17,6 @@ export interface Session {
     messages?: Message[];
 }
 
-export type SessionCreate = Omit<Partial<Session>, "id" | "createdAt" | "updatedAt" | "messages">;
+export type SessionCreate = Omit<Session, "id" | "createdAt" | "updatedAt" | "messages">;
 
-export type SessionUpdate = Omit<SessionCreate, "createdBy" | "userId">;
+export type SessionUpdate = Omit<Partial<SessionCreate>, "createdBy" | "userId">;
