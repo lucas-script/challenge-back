@@ -2,7 +2,14 @@ import { PrismaSessionDataSource } from "../../../../../src/data/data-sources/pr
 import { IDatabaseWrapper } from "../../../../../src/data/interfaces/data-sources/database";
 import { Session } from "../../../../../src/domain/entities/session";
 import { Message } from "../../../../../src/domain/entities/message";
-import { messageFromClientData, messageFromOperatorData, sessionData, sessionEndedData } from "../../../mocked-data";
+import { 
+    messageFromClientData, 
+    messageFromOperatorData, 
+    sessionCreationPayloadData,
+    sessionData, 
+    sessionEndedPayloadData,
+    sessionEndedData 
+} from "../../../mocked-data";
 
 describe("Prisma datasource", () => {
     let mockDatabase: IDatabaseWrapper;
@@ -29,7 +36,7 @@ describe("Prisma datasource", () => {
         const datasource = new PrismaSessionDataSource(mockDatabase);
         jest.spyOn(mockDatabase.session, "create").mockImplementation(() => Promise.resolve(expectedData));
 
-        const session = await datasource.createSession();
+        const session = await datasource.createSession(sessionCreationPayloadData);
 
         expect(mockDatabase.session.create).toHaveBeenCalledWith({ data: {} });
         expect(session).toStrictEqual(expectedData);
@@ -41,7 +48,7 @@ describe("Prisma datasource", () => {
         jest.spyOn(mockDatabase.session, "update").mockImplementation(() => Promise.resolve(expectedData));
 
         if (expectedData.endedAt) {
-            const session = await datasource.endSession(expectedData.id, expectedData.endedAt);
+            const session = await datasource.endSession(expectedData.id, sessionEndedPayloadData);
     
             expect(mockDatabase.session.update).toHaveBeenCalledWith({
                 where: {

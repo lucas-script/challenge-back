@@ -12,6 +12,6 @@ export interface Message {
     userId: string;
 }
 
-export type MessageCreate = Omit<Partial<Message>, "id" | "createdAt" | "updatedAt" | "session" | "user">;
+export type MessageCreate = Omit<Message, "id" | "createdAt" | "updatedAt" | "session" | "user">;
 
 export type MessageFind = Omit<MessageCreate, "message" | "userId">;

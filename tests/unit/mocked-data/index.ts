@@ -39,26 +39,29 @@ export const userOperatorData: User = {
     roleId: roleOperatorData.id,
 }
 
-export const sessionData: Session = {
-    id: "905f27d4-dd0d-4700-9ef3-f22f701957f6",
+export const sessionCreationPayloadData: SessionCreate = {
     status: SessionStatus.ACTIVE,
-    createdAt: new Date(),
-    updatedAt: new Date(),
     userId: userClientData.id,
 }
 
-export const sessionCreationData: SessionCreate = {
-    status: SessionStatus.ACTIVE,
-    userId: userClientData.id,
+export const sessionData: Session = {
+    id: "905f27d4-dd0d-4700-9ef3-f22f701957f6",
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    ...sessionCreationPayloadData,
+}
+
+export const sessionEndedPayloadData = {
+    status: SessionStatus.ENDED,
+    endedAt: new Date(),
 }
 
 export const sessionEndedData: Session = {
     id: "905f27d4-dd0d-4700-9ef3-f22f701957f6",
-    status: SessionStatus.ENDED,
     createdAt: new Date(),
     updatedAt: new Date(),
-    endedAt: new Date(),
     userId: userOperatorData.id,
+    ...sessionEndedPayloadData,
 }
 
 export const messageFromClientData: Message = {
