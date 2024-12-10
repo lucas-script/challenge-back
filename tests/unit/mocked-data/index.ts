@@ -1,4 +1,9 @@
-import { Session, SessionCreate, SessionStatus } from "../../../src/domain/entities/session";
+import { 
+    Session, 
+    SessionCreatePayload,
+    SessionUpdatePayload, 
+    SessionStatus,
+} from "../../../src/domain/entities/session";
 import { Message } from "../../../src/domain/entities/message";
 import { Role } from "../../../src/domain/entities/role";
 import { User } from "../../../src/domain/entities/user";
@@ -39,19 +44,19 @@ export const userOperatorData: User = {
     roleId: roleOperatorData.id,
 }
 
-export const sessionCreationPayloadData: SessionCreate = {
-    status: SessionStatus.ACTIVE,
+export const sessionCreationPayloadData: SessionCreatePayload = {
     userId: userClientData.id,
 }
 
 export const sessionData: Session = {
     id: "905f27d4-dd0d-4700-9ef3-f22f701957f6",
+    status: SessionStatus.ACTIVE,
     createdAt: new Date(),
     updatedAt: new Date(),
     ...sessionCreationPayloadData,
 }
 
-export const sessionEndedPayloadData = {
+export const sessionEndedPayloadData: SessionUpdatePayload = {
     status: SessionStatus.ENDED,
     endedAt: new Date(),
 }
@@ -61,7 +66,7 @@ export const sessionEndedData: Session = {
     createdAt: new Date(),
     updatedAt: new Date(),
     userId: userOperatorData.id,
-    ...sessionEndedPayloadData,
+    status: sessionEndedPayloadData.status!,
 }
 
 export const messageFromClientData: Message = {

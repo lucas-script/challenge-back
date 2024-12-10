@@ -17,6 +17,8 @@ export interface Session {
     messages?: Message[];
 }
 
-export type SessionCreate = Omit<Session, "id" | "createdAt" | "updatedAt" | "messages">;
+export type SessionCreatePayload = Omit<Session, "id" | "status" | "createdAt" | "updatedAt" | "messages">;
 
-export type SessionUpdate = Omit<Partial<SessionCreate>, "createdBy" | "userId">;
+export type SessionUpdatePayload = Omit<Partial<Session>, "id" | "createdAt" | "updatedAt" | "createdBy" | "userId" | "messages">;
+
+export type SessionEndPayload = Required<Pick<Session, "status" | "endedAt">>;
